@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' data: blob: https://fonts.googleapis.com https://fonts.gstatic.com; img-src 'self' data: blob:;" />
+  <title>TENXBooKiNG | منصة الكورسات والمعسكرات والمحاضرات التفاعلية</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --navy-deep: #040d29;
+      --navy-card: #081a4b;
+      --blue-bright: #1769ff;
+      --cyan-glow: #00d4ff;
+      --yellow-main: #ffe11b;
+      --yellow-dark: #f2b705;
+      --white: #ffffff;
+      --text-muted: #b8c8f0;
+      --border-glass: rgba(255, 255, 255, 0.14);
+      --success: #16c784;
+      --danger: #ff4d6d;
+      --radius-lg: 20px;
+      --shadow-glow: 0 12px 36px rgba(0, 110, 255, 0.25);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Cairo', system-ui, -apple-system, sans-serif;
+      background: radial-gradient(circle at top right, #0e38a8 0%, #06143f 45%, #03091f 100%);
+      color: var(--white); line-height: 1.7; min-height: 100vh; overflow-x: hidden;
+    }
+
+    body::before {
+      content: ""; position: fixed; inset: 0; pointer-events: none; z-index: -1;
+      background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1220px, 92%); margin: 0 auto; }
+
+    header {
+      position: sticky; top: 0; z-index: 900;
+      background: rgba(4, 13, 41, 0.9); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-glass);
+    }
+    .nav-wrap { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; gap: 14px; }
+    .brand { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+    .brand-badge {
+      width: 46px; height: 46px; border-radius: 50%; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--blue-bright), var(--navy-deep));
+      border: 2.5px solid var(--yellow-main); display: grid; place-items: center;
+      font-weight: 900; font-size: 13px; color: var(--yellow-main); box-shadow: 0 0 18px rgba(255, 225, 27, 0.35);
+    }
+    .brand-text h1 { font-size: 1.12rem; font-weight: 900; line-height: 1.2; }
+    .brand-text span { display: block; font-size: 0.7rem; color: var(--yellow-main); font-weight: 700; }
+
+    .nav-links { display: flex; align-items: center; gap: 6px; list-style: none; flex-wrap: wrap; }
+    .nav-links a { padding: 7px 11px; border-radius: 10px; font-size: 0.86rem; font-weight: 700; color: var(--text-muted); transition: 0.25s; cursor: pointer; }
+    .nav-links a:hover, .nav-links a.active { background: rgba(255, 225, 27, 0.14); color: var(--yellow-main); }
+
+    .nav-actions { display: flex; align-items: center; gap: 8px; }
+    .ticket-counter-btn {
+      background: var(--yellow-main); color: var(--navy-deep); border: none; padding: 8px 14px;
+      border-radius: 12px; font-family: inherit; font-weight: 800; font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; gap: 6px;
+    }
+    .menu-toggle {
+      display: none; background: rgba(255,255,255,0.1); border: 1px solid var(--border-glass);
+      color: #fff; width: 40px; height: 40px; border-radius: 10px; font-size: 1.25rem; cursor: pointer;
+    }
+
+    .hero { padding: 38px 0 30px; }
+    .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 32px; align-items: center; }
+    .hero-pill {
+      display: inline-flex; align-items: center; gap: 8px; background: rgba(255,225,27,0.15);
+      border: 1px solid rgba(255,225,27,0.4); color: var(--yellow-main); padding: 6px 14px;
+      border-radius: 999px; font-size: 0.84rem; font-weight: 800; margin-bottom: 14px;
+    }
+    .hero-title { font-size: clamp(1.85rem, 3.4vw, 2.8rem); font-weight: 900; line-height: 1.25; margin-bottom: 12px; }
+    .hero-title span { color: var(--yellow-main); }
+    .hero-subtitle { color: var(--text-muted); font-size: 1rem; margin-bottom: 20px; max-width: 580px; }
+    .hero-cta { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 10px 18px; border-radius: 12px; font-family: inherit; font-weight: 800; font-size: 0.9rem; cursor: pointer; border: none; transition: 0.25s;
+    }
+    .btn-primary { background: linear-gradient(135deg, var(--yellow-main), var(--yellow-dark)); color: var(--navy-deep); box-shadow: 0 10px 25px rgba(255,225,27,0.28); }
+    .btn-primary:hover { transform: translateY(-2px); filter: brightness(1.05); }
+    .btn-secondary { background: rgba(255,255,255,0.08); color: var(--white); border: 1px solid var(--border-glass); }
+    .btn-secondary:hover { background: rgba(255,255,255,0.16); }
+    .btn-live { background: linear-gradient(135deg, #00d4ff, #1769ff); color: #fff; }
+    .btn-sm { padding: 7px 12px; font-size: 0.82rem; border-radius: 9px; }
+
+    .poster-frame {
+      position: relative; background: linear-gradient(145deg, rgba(23,105,255,0.35), rgba(255,225,27,0.25));
+      padding: 10px; border-radius: 26px; box-shadow: 0 24px 60px rgba(0,0,0,0.55);
+    }
+    .poster-inner {
+      position: relative; border-radius: 18px; overflow: hidden; background: var(--navy-deep);
+      aspect-ratio: 1 / 1; display: flex; align-items: center; justify-content: center;
+    }
+    .poster-inner img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .poster-fallback { padding: 28px; text-align: center; display: none; flex-direction: column; align-items: center; gap: 12px; }
+    .poster-upload-bar {
+      position: absolute; bottom: 12px; left: 12px; right: 12px; display: flex; justify-content: space-between; align-items: center; gap: 8px;
+      background: rgba(4,13,41,0.85); backdrop-filter: blur(8px); padding: 8px 12px; border-radius: 12px; border: 1px solid var(--border-glass); font-size: 0.78rem;
+    }
+    .upload-label { background: var(--yellow-main); color: var(--navy-deep); padding: 5px 10px; border-radius: 8px; font-weight: 800; cursor: pointer; white-space: nowrap; }
+
+    .dock-section { padding: 14px 0 36px; }
+    .dock-hint { text-align: center; color: var(--text-muted); font-size: 0.92rem; margin-bottom: 16px; }
+    .icon-dock { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 14px; }
+    .dock-btn {
+      background: linear-gradient(160deg, rgba(12,42,118,0.85), rgba(4,13,41,0.95));
+      border: 1.5px solid var(--border-glass); border-radius: 18px; padding: 18px 10px;
+      color: var(--white); font-family: inherit; cursor: pointer;
+      display: flex; flex-direction: column; align-items: center; gap: 9px; transition: 0.25s ease;
+    }
+    .dock-btn:hover, .dock-btn.active {
+      transform: translateY(-4px); border-color: var(--yellow-main);
+      box-shadow: 0 12px 30px rgba(255, 225, 27, 0.22);
+      background: linear-gradient(160deg, rgba(23,105,255,0.45), rgba(8,26,75,0.95));
+    }
+    .dock-circle {
+      width: 56px; height: 56px; border-radius: 50%; background: rgba(255,225,27,0.14);
+      border: 2px solid var(--yellow-main); display: grid; place-items: center; font-size: 1.55rem; transition: 0.25s;
+    }
+    .dock-btn.active .dock-circle { background: var(--yellow-main); color: var(--navy-deep); }
+    .dock-btn span { font-size: 0.88rem; font-weight: 800; }
+    .dock-btn small { font-size: 0.72rem; color: var(--text-muted); }
+
+    .workspace-wrap { display: none; padding: 24px 0 54px; animation: fadeSlide 0.28s ease; }
+    .workspace-wrap.open { display: block; }
+    @keyframes fadeSlide { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    .workspace-box {
+      background: rgba(6, 20, 63, 0.72); border: 1.5px solid rgba(255, 225, 27, 0.35);
+      border-radius: 24px; padding: 26px; box-shadow: var(--shadow-glow);
+    }
+    .module-panel { display: none; }
+    .module-panel.active { display: block; }
+
+    .section-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 22px; padding-bottom: 14px; border-bottom: 1px solid var(--border-glass); }
+    .section-head h2 { font-size: clamp(1.35rem, 2.3vw, 1.8rem); font-weight: 900; display: flex; align-items: center; gap: 10px; }
+    .section-head h2::before { content: ""; width: 8px; height: 26px; border-radius: 4px; background: var(--yellow-main); display: inline-block; }
+    .section-head p { color: var(--text-muted); font-size: 0.9rem; }
+
+    .filter-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+    .filter-btn {
+      background: rgba(255,255,255,0.06); color: var(--text-muted); border: 1px solid var(--border-glass);
+      padding: 7px 15px; border-radius: 999px; font-family: inherit; font-weight: 700; cursor: pointer;
+    }
+    .filter-btn.active, .filter-btn:hover { background: var(--yellow-main); color: var(--navy-deep); border-color: var(--yellow-main); }
+
+    .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px; }
+    .trainers-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(255px, 1fr)); gap: 18px; }
+
+    /* البطاقة نفسها قابلة للضغط لتوسيع الشرح جواها */
+    .card {
+      background: linear-gradient(165deg, rgba(12,42,118,0.88), rgba(5,16,52,0.96));
+      border: 1px solid var(--border-glass); border-radius: var(--radius-lg); padding: 18px;
+      display: flex; flex-direction: column; justify-content: space-between; gap: 12px; transition: 0.25s;
+      cursor: pointer;
+    }
+    .card:hover, .card.expanded { border-color: rgba(255,225,27,0.65); box-shadow: var(--shadow-glow); }
+
+    .card-badge {
+      display: inline-block; align-self: flex-start; background: rgba(0,212,255,0.15); color: var(--cyan-glow);
+      border: 1px solid rgba(0,212,255,0.35); padding: 4px 10px; border-radius: 8px; font-size: 0.76rem; font-weight: 800;
+    }
+    .card-badge.gold { background: rgba(255,225,27,0.16); color: var(--yellow-main); border-color: rgba(255,225,27,0.4); }
+    .card h3 { font-size: 1.08rem; font-weight: 800; margin: 6px 0 4px; }
+    .card p { color: var(--text-muted); font-size: 0.86rem; }
+
+    .card-tap-hint {
+      margin-top: 8px; display: flex; align-items: center; justify-content: space-between;
+      font-size: 0.8rem; font-weight: 800; color: var(--cyan-glow);
+      background: rgba(0, 212, 255, 0.08); border: 1px dashed rgba(0, 212, 255, 0.35);
+      border-radius: 10px; padding: 7px 11px;
+    }
+    .card.expanded .card-tap-hint { color: var(--yellow-main); border-color: rgba(255,225,27,0.45); background: rgba(255,225,27,0.08); }
+
+    /* الشرح والتوسعات داخل البطاقة عند الضغط عليها */
+    .card-inner-details {
+      display: none; margin-top: 10px; background: rgba(4,13,41,0.78);
+      border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; padding: 12px;
+      flex-direction: column; gap: 9px; animation: fadeSlide 0.2s ease;
+    }
+    .card.expanded .card-inner-details { display: flex; }
+
+    .overview-row { font-size: 0.8rem; color: #dbe7ff; line-height: 1.6; }
+    .overview-row strong { color: var(--yellow-main); }
+
+    .level-item {
+      background: rgba(255,255,255,0.04); border-right: 3px solid var(--cyan-glow);
+      border-radius: 9px; overflow: hidden;
+    }
+    .level-item.open { border-right-color: var(--yellow-main); background: rgba(255,225,27,0.07); }
+    .level-trigger {
+      width: 100%; background: none; border: none; color: #fff; font-family: inherit;
+      padding: 8px 10px; text-align: right; font-size: 0.8rem; font-weight: 800;
+      cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 8px;
+    }
+    .level-desc { display: none; padding: 0 10px 9px; font-size: 0.76rem; line-height: 1.55; color: var(--text-muted); }
+    .level-item.open .level-desc { display: block; }
+
+    .trainer-photo-wrap {
+      position: relative; width: 100%; height: 220px; border-radius: 16px; overflow: hidden;
+      background: #040d29; border: 2px solid rgba(255,225,27,0.35); margin-bottom: 8px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .trainer-photo-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+    .trainer-fallback { text-align: center; padding: 14px; color: var(--text-muted); font-size: 0.84rem; display: none; }
+    .trainer-upload-btn {
+      position: absolute; bottom: 8px; left: 8px; background: rgba(4,13,41,0.88); color: var(--yellow-main);
+      border: 1px solid rgba(255,225,27,0.45); padding: 4px 10px; border-radius: 8px; font-size: 0.74rem; font-weight: 800; cursor: pointer;
+    }
+    .live-dot {
+      display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; font-weight: 800; color: #16c784;
+      background: rgba(22,199,132,0.14); border: 1px solid rgba(22,199,132,0.35); padding: 3px 10px; border-radius: 999px;
+    }
+    .live-dot::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #16c784; }
+
+    .card-meta { display: flex; flex-wrap: wrap; gap: 10px; font-size: 0.8rem; color: #d6e4ff; padding-top: 8px; border-top: 1px dashed rgba(255,255,255,0.12); }
+    .card-footer { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 6px; }
+    .price-tag { font-size: 1.08rem; font-weight: 900; color: var(--yellow-main); }
+
+    .table-wrap { overflow-x: auto; background: rgba(8,26,75,0.7); border: 1px solid var(--border-glass); border-radius: 16px; }
+    table { width: 100%; border-collapse: collapse; min-width: 660px; }
+    th, td { padding: 13px 15px; text-align: right; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    th { background: rgba(255,225,27,0.12); color: var(--yellow-main); font-weight: 800; font-size: 0.88rem; }
+    .status-pill { padding: 4px 10px; border-radius: 999px; font-size: 0.75rem; font-weight: 800; background: rgba(22,199,132,0.18); color: var(--success); }
+
+    .tickets-empty { background: rgba(8,26,75,0.6); border: 1px dashed rgba(255,225,27,0.4); border-radius: 16px; padding: 30px; text-align: center; color: var(--text-muted); }
+    .ticket-card {
+      background: linear-gradient(135deg, #0b2468, #06133a); border: 2px solid var(--yellow-main);
+      border-radius: 20px; padding: 18px; display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: center;
+    }
+    .ticket-qr { background: #fff; padding: 10px; border-radius: 12px; display: flex; flex-direction: column; align-items: center; gap: 4px; color: var(--navy-deep); font-size: 0.7rem; font-weight: 900; }
+
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(2,8,26,0.84); backdrop-filter: blur(8px);
+      display: none; align-items: center; justify-content: center; padding: 16px; z-index: 1200;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: linear-gradient(180deg, #0a205c, #040d29); border: 1px solid rgba(255,225,27,0.4);
+      border-radius: 22px; width: min(600px, 100%); max-height: 92vh; overflow-y: auto; padding: 22px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.65);
+    }
+    .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--border-glass); }
+    .close-btn { background: rgba(255,255,255,0.1); color: #fff; border: none; width: 34px; height: 34px; border-radius: 10px; font-size: 1.1rem; cursor: pointer; }
+
+    .steps-bar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 16px; }
+    .step-item { text-align: center; padding: 8px; border-radius: 10px; background: rgba(255,255,255,0.06); font-size: 0.8rem; font-weight: 700; color: var(--text-muted); }
+    .step-item.active { background: var(--yellow-main); color: var(--navy-deep); }
+
+    .form-group { margin-bottom: 12px; }
+    .form-group label { display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 5px; color: #dce7ff; }
+    .form-control {
+      width: 100%; padding: 10px 13px; border-radius: 11px; border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(4,13,41,0.85); color: #fff; font-family: inherit; font-size: 0.9rem; outline: none;
+    }
+    .form-control:focus { border-color: var(--yellow-main); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    .pay-methods { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 14px; }
+    .pay-option { border: 1px solid var(--border-glass); background: rgba(255,255,255,0.05); border-radius: 12px; padding: 11px 8px; text-align: center; cursor: pointer; font-weight: 700; font-size: 0.84rem; }
+    .pay-option.selected { border-color: var(--yellow-main); background: rgba(255,225,27,0.16); color: var(--yellow-main); }
+    .sim-notice { background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.35); color: #b8f2ff; padding: 10px 12px; border-radius: 10px; font-size: 0.82rem; margin-bottom: 14px; }
+    .error-msg { color: #ff8fa3; font-size: 0.84rem; margin-bottom: 10px; display: none; }
+
+    .live-stage { background: linear-gradient(135deg, #040d29, #0c2b7a); border: 1px solid rgba(0,212,255,0.35); border-radius: 16px; padding: 16px; margin-bottom: 14px; }
+    .live-controls { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .live-chat-box { background: rgba(4,13,41,0.82); border: 1px solid var(--border-glass); border-radius: 14px; padding: 12px; margin-top: 12px; }
+    .chat-list { max-height: 170px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; margin-bottom: 10px; }
+    .chat-msg { background: rgba(255,255,255,0.06); padding: 8px 10px; border-radius: 10px; font-size: 0.84rem; }
+    .chat-msg strong { color: var(--yellow-main); }
+
+    /* المساعد الذكي X + زر المايك */
+    .x-fab {
+      position: fixed; bottom: 20px; left: 20px; z-index: 1150;
+      background: linear-gradient(135deg, var(--yellow-main), var(--yellow-dark));
+      color: var(--navy-deep); border: 2px solid #fff; border-radius: 999px;
+      padding: 12px 18px; font-family: inherit; font-weight: 900; font-size: 0.94rem;
+      cursor: pointer; box-shadow: 0 12px 30px rgba(0,0,0,0.45), 0 0 24px rgba(255,225,27,0.45);
+      display: flex; align-items: center; gap: 8px; transition: 0.25s;
+    }
+    .x-fab:hover { transform: translateY(-3px) scale(1.03); }
+
+    .x-panel {
+      position: fixed; bottom: 82px; left: 20px; z-index: 1160;
+      width: min(400px, calc(100vw - 28px)); height: min(560px, 78vh);
+      background: linear-gradient(180deg, #0b2468, #040d29);
+      border: 1.5px solid var(--yellow-main); border-radius: 22px;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.7);
+      display: none; flex-direction: column; overflow: hidden;
+    }
+    .x-panel.open { display: flex; }
+    .x-header { background: rgba(4,13,41,0.92); padding: 12px 15px; border-bottom: 1px solid var(--border-glass); display: flex; align-items: center; justify-content: space-between; }
+    .x-title { display: flex; align-items: center; gap: 10px; }
+    .x-avatar { width: 38px; height: 38px; border-radius: 50%; background: var(--yellow-main); color: var(--navy-deep); display: grid; place-items: center; font-weight: 900; font-size: 1.1rem; }
+    .x-chips { display: flex; gap: 6px; padding: 8px 12px; overflow-x: auto; border-bottom: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.03); }
+    .x-chip { white-space: nowrap; background: rgba(0,212,255,0.14); color: var(--cyan-glow); border: 1px solid rgba(0,212,255,0.35); border-radius: 999px; padding: 4px 10px; font-family: inherit; font-size: 0.75rem; font-weight: 700; cursor: pointer; }
+    .x-chip:hover { background: var(--yellow-main); color: var(--navy-deep); border-color: var(--yellow-main); }
+    .x-body { flex: 1; overflow-y: auto; padding: 12px; display: flex; flex-direction: column; gap: 10px; }
+    .x-msg { max-width: 88%; padding: 10px 13px; border-radius: 14px; font-size: 0.85rem; line-height: 1.55; white-space: pre-line; }
+    .x-msg.bot { align-self: flex-start; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); color: #eef4ff; }
+    .x-msg.user { align-self: flex-end; background: var(--yellow-main); color: var(--navy-deep); font-weight: 700; }
+
+    .x-form { display: flex; gap: 6px; padding: 10px 12px; background: rgba(4,13,41,0.92); border-top: 1px solid var(--border-glass); align-items: center; }
+    .mic-btn {
+      width: 42px; height: 42px; border-radius: 11px; border: 1px solid rgba(0,212,255,0.45);
+      background: rgba(0,212,255,0.15); color: #fff; font-size: 1.15rem; cursor: pointer; flex-shrink: 0; transition: 0.2s;
+    }
+    .mic-btn.listening { background: var(--danger); border-color: #fff; animation: pulseMic 1s infinite; }
+    @keyframes pulseMic { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+
+    footer { background: rgba(3,9,31,0.95); border-top: 1px solid var(--border-glass); padding: 28px 0; margin-top: 24px; text-align: center; }
+    .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 16px; margin: 10px 0; color: var(--text-muted); font-size: 0.86rem; }
+
+    @media (max-width: 960px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .nav-links {
+        display: none; position: absolute; top: 70px; right: 4%; left: 4%; background: #06143f;
+        border: 1px solid var(--border-glass); border-radius: 16px; padding: 14px; flex-direction: column; align-items: stretch;
+      }
+      .nav-links.show { display: flex; }
+      .menu-toggle { display: inline-grid; place-items: center; }
+    }
+
+    @media (max-width: 580px) {
+      .cards-grid, .trainers-grid, .pay-methods, .form-row, .ticket-card { grid-template-columns: 1fr; }
+      .icon-dock { grid-template-columns: repeat(2, 1fr); }
+      .workspace-box { padding: 16px; }
+      .x-fab { bottom: 14px; left: 14px; padding: 10px 14px; font-size: 0.86rem; }
+      .x-panel { left: 14px; bottom: 72px; }
+    }
+
+    @media print {
+      header, .hero, .dock-section, footer, .x-fab, .x-panel, .no-print { display: none !important; }
+      .workspace-wrap, #panel-tickets { display: block !important; }
+      .module-panel:not(#panel-tickets) { display: none !important; }
+      body { background: #fff; color: #000; }
+      .ticket-card { border: 2px solid #000; color: #000; background: #fff; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container nav-wrap">
+      <a href="#home" class="brand" onclick="collapseWorkspace()">
+        <div class="brand-badge">TENX</div>
+        <div class="brand-text"><h1>TENXBooKiNG</h1><span>STUDENT ACTIVITIES • AI HACKATHON</span></div>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a onclick="collapseWorkspace()">الرئيسية</a></li>
+        <li><a onclick="activateModule('instructors')">المحاضرات التفاعلية</a></li>
+        <li><a onclick="activateModule('courses')">الكورسات</a></li>
+        <li><a onclick="activateModule('camps')">المعسكرات والورش</a></li>
+        <li><a onclick="activateModule('events')">الفعاليات</a></li>
+        <li><a onclick="activateModule('schedule')">المواعيد والأسعار</a></li>
+        <li><a onclick="activateModule('tickets')">تذاكري</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="ticket-counter-btn" onclick="activateModule('tickets')"><span>🎟️ تذاكري</span><span id="ticketsBadge">(0)</span></button>
+        <button class="menu-toggle" id="menuToggle" aria-label="القائمة">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="container hero-grid">
+      <div>
+        <div class="hero-pill">🚀 مهارات اليوم ... تصنع مستقبل الغد</div>
+        <h2 class="hero-title">منصة <span>TENXBooKiNG</span><br />للتدريب، المحاضرات التفاعلية، والهاكاثون</h2>
+        <p class="hero-subtitle">
+          اضغط على أي أيقونة لعرض قسمها، واضغط على أي بطاقة ليظهر لك شرحها التفصيلي ومستوياتها الأربعة جواها، أو تكلّم بالمايك مع المساعد الذكي <strong>X</strong> ليرد عليك فوراً!
+        </p>
+        <div class="hero-cta">
+          <button type="button" class="btn btn-primary" onclick="activateModule('instructors')">🎥 حضور المحاضرات التفاعلية</button>
+          <button type="button" class="btn btn-live" onclick="toggleAssistant(true)">🎤 تكلّم مع المساعد X</button>
+        </div>
+      </div>
+
+      <div class="poster-frame">
+        <div class="poster-inner">
+          <img id="heroPosterImg" src="tenx-poster.jpg" alt="بوستر TENXBooKiNG AI Hackathon" onerror="handleImageFallback()" />
+          <div id="posterFallback" class="poster-fallback">
+            <div style="font-size: 3rem;">🤖🏆</div>
+            <h3 style="color: var(--yellow-main);">TENXBooKiNG • AI HACKATHON</h3>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">احفظ الصورة باسم <strong>tenx-poster.jpg</strong> بجانب الملف أو اخترها من جهازك بالزر بالأسفل.</p>
+          </div>
+          <div class="poster-upload-bar">
+            <span>🖼️ صورة واجهة TENXBooKiNG</span>
+            <label for="posterFileInput" class="upload-label">اختر الصورة</label>
+            <input type="file" id="posterFileInput" accept="image/*" style="display:none" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dock-section">
+    <div class="container">
+      <p class="dock-hint">👇 اضغط على أي أيقونة لعرض بطاقاتها (وبالضغط على أي بطاقة يفتح شرحها جواها):</p>
+      <div class="icon-dock" id="iconDock">
+        <button class="dock-btn" data-module="instructors" onclick="activateModule('instructors')">
+          <div class="dock-circle">🎥</div><span>المحاضرات التفاعلية</span><small>حضور مباشر مع المدربين</small>
+        </button>
+        <button class="dock-btn" data-module="courses" onclick="activateModule('courses')">
+          <div class="dock-circle">📚</div><span>الكورسات والبرامج</span><small>اضغط البطاقة للشرح</small>
+        </button>
+        <button class="dock-btn" data-module="camps" onclick="activateModule('camps')">
+          <div class="dock-circle">🏕️</div><span>المعسكرات والورش</span><small>تطبيق عملي مفصل</small>
+        </button>
+        <button class="dock-btn" data-module="events" onclick="activateModule('events')">
+          <div class="dock-circle">🏆</div><span>الفعاليات والمسابقات</span><small>AI Hackathon & بطولات</small>
+        </button>
+        <button class="dock-btn" data-module="schedule" onclick="activateModule('schedule')">
+          <div class="dock-circle">📅</div><span>المواعيد والأسعار</span><small>الجدول الكامل</small>
+        </button>
+        <button class="dock-btn" data-module="tickets" onclick="activateModule('tickets')">
+          <div class="dock-circle">🎟️</div><span>التذاكر الإلكترونية</span><small>حجوزاتي وQR</small>
+        </button>
+        <button class="dock-btn" onclick="toggleAssistant(true)">
+          <div class="dock-circle">🎤</div><span>المساعد X</span><small>تحدث بالمايك ويرد فوراً</small>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="workspace-wrap" id="workspaceContainer">
+    <div class="container">
+      <div class="workspace-box">
+
+        <div class="module-panel" id="panel-instructors">
+          <div class="section-head">
+            <div><h2>حضور المحاضرات التفاعلية مع أقوى المدربين</h2><p>اضغط على بطاقة أي مدرب لقراءة نبذة عنه، واضغط «دخول المحاضرة التفاعلية» للحضور الفوري.</p></div>
+            <button class="btn btn-secondary btn-sm" onclick="collapseWorkspace()">✕ إخفاء</button>
+          </div>
+          <div class="trainers-grid" id="instructorsGrid"></div>
+        </div>
+
+        <div class="module-panel" id="panel-courses">
+          <div class="section-head">
+            <div><h2>الكورسات والبرامج التدريبية</h2><p>اضغط على أي بطاقة ليظهر لك شرحها المفصل والمستويات الأربعة بداخلها.</p></div>
+            <button class="btn btn-secondary btn-sm" onclick="collapseWorkspace()">✕ إخفاء</button>
+          </div>
+          <div class="filter-tabs" id="courseFilters">
+            <button class="filter-btn active" data-filter="all">الكل</button>
+            <button class="filter-btn" data-filter="ai">الذكاء الاصطناعي</button>
+            <button class="filter-btn" data-filter="web">البرمجة والويب</button>
+            <button class="filter-btn" data-filter="robotics">الروبوتات والهاردوير</button>
+            <button class="filter-btn" data-filter="skills">ريادة الأعمال والمهارات</button>
+          </div>
+          <div class="cards-grid" id="coursesGrid"></div>
+        </div>
+
+        <div class="module-panel" id="panel-camps">
+          <div class="section-head">
+            <div><h2>المعسكرات والورش التدريبية</h2><p>اضغط على أي بطاقة لعرض الشرح والمستويات الأربعة بداخلها.</p></div>
+            <button class="btn btn-secondary btn-sm" onclick="collapseWorkspace()">✕ إخفاء</button>
+          </div>
+          <div class="cards-grid" id="campsGrid"></div>
+        </div>
+
+        <div class="module-panel" id="panel-events">
+          <div class="section-head">
+            <div><h2>الفعاليات والمسابقات</h2><p>اضغط على أي بطاقة لمعرفة تفاصيل البطولة ومراحلها الأربعة والتسجيل.</p></div>
+            <button class="btn btn-secondary btn-sm" onclick="collapseWorkspace()">✕ إخفاء</button>
+          </div>
+          <div class="cards-grid" id="eventsGrid"></div>
+        </div>
+
+        <div class="module-panel" id="panel-schedule">
+          <div class="section-head">
+            <div><h2>جدول المواعيد والأسعار</h2><p>مواعيد الانطلاق والباقات المتاحة للحجز الفوري.</p></div>
+            <button class="btn btn-secondary btn-sm" onclick="collapseWorkspace()">✕ إخفاء</button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>البرنامج / الفعالية</th><th>التصنيف</th><th>الموعد</th><th>المدة</th><th>السعر</th><th>الحالة</th><th>إجراء</th></tr></thead>
+              <tbody id="scheduleTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="module-panel" id="panel-tickets">
+          <div class="section-head">
+            <div><h2>تذاكري الإلكترونية وسجل حضور المحاضرات</h2><p>تُحفظ تذاكرك تلقائياً مع إمكانية الطباعة أو التصدير.</p></div>
+            <div class="no-print" style="display:flex; gap:8px; flex-wrap:wrap;">
+              <button class="btn btn-secondary btn-sm" onclick="exportRegistrations()">💾 تصدير (JSON)</button>
+              <button class="btn btn-secondary btn-sm" onclick="window.print()">🖨️ طباعة</button>
+              <button class="btn btn-secondary btn-sm" onclick="collapseWorkspace()">✕ إخفاء</button>
+            </div>
+          </div>
+          <div id="ticketsContainer" class="cards-grid" style="grid-template-columns: 1fr;"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <h3 style="color: var(--yellow-main); font-weight: 900;">TENXBooKiNG • GLOBAL MINDS, BRIGHTER FUTURES</h3>
+      <div class="footer-links"><span>💡 Learn New Skills</span><span>🤝 Work in Teams</span><span>💻 Build Solutions</span><span>🌍 Solve Real Problems</span><span>🏆 Certificates</span></div>
+      <p style="font-size: 0.85rem; color: var(--text-muted);">TENXBooKiNG.COM • جميع الحقوق محفوظة © 2026</p>
+    </div>
+  </footer>
+
+  <!-- المساعد X بالمايك والرد الصوتي -->
+  <button class="x-fab" onclick="toggleAssistant()" aria-label="المساعد X"><span>🤖</span><span>المساعد X</span></button>
+
+  <aside class="x-panel" id="assistantPanel" aria-label="المساعد X">
+    <div class="x-header">
+      <div class="x-title">
+        <div class="x-avatar">X</div>
+        <div><strong style="display:block; font-size:0.95rem;">المساعد X</strong><small style="color:var(--success); font-size:0.74rem;">● متصل • يرد صوتياً ونصياً</small></div>
+      </div>
+      <div style="display:flex; gap:6px;">
+        <button class="close-btn" id="xVoiceToggle" onclick="toggleVoiceReply()" title="تشغيل/إيقاف الصوت">🔊</button>
+        <button class="close-btn" onclick="toggleAssistant(false)" aria-label="إغلاق">✕</button>
+      </div>
+    </div>
+    <div class="x-chips">
+      <button type="button" class="x-chip" onclick="askQuick('إيه هي الكورسات والأسعار؟')">الكورسات والأسعار</button>
+      <button type="button" class="x-chip" onclick="askQuick('مين هما المدربين والمحاضرات التفاعلية؟')">المدربين والمحاضرات</button>
+      <button type="button" class="x-chip" onclick="askQuick('اشرح لي هاكاثون الذكاء الاصطناعي')">الهاكاثون</button>
+      <button type="button" class="x-chip" onclick="askQuick('هل في كود خصم وإزاي أحجز؟')">الخصم والحجز</button>
+    </div>
+    <div class="x-body" id="xChatBody"></div>
+    <form class="x-form" onsubmit="return handleAssistantSubmit(event)">
+      <button type="button" class="mic-btn" id="xMicBtn" onclick="toggleMic()" title="تحدث بالمايك">🎤</button>
+      <input type="text" id="xInput" class="form-control" maxlength="200" placeholder="تكلّم بالمايك أو اكتب سؤالك لـ X..." />
+      <button type="submit" class="btn btn-primary btn-sm">إرسال</button>
+    </form>
+  </aside>
+
+  <!-- قاعة المحاضرة التفاعلية -->
+  <div class="modal-overlay" id="liveModal">
+    <div class="modal">
+      <div class="modal-header">
+        <div>
+          <span class="live-dot">حضور محاضرة تفاعلية مباشرة</span>
+          <h3 id="liveLectureTitle" style="margin-top:6px;">عنوان المحاضرة</h3>
+          <small id="liveTrainerName" style="color: var(--yellow-main);"></small>
+        </div>
+        <button class="close-btn" onclick="closeLiveRoom()" aria-label="إغلاق">✕</button>
+      </div>
+      <div class="live-stage">
+        <div style="font-size: 0.9rem; color: #dce7ff;" id="liveLectureDesc">مرحباً بكم في القاعة التفاعلية.</div>
+        <div class="live-controls">
+          <button type="button" class="btn btn-primary btn-sm" id="liveHandBtn" onclick="toggleRaiseHand()">✋ رفع اليد للمشاركة</button>
+          <button type="button" class="btn btn-live btn-sm" onclick="confirmLiveAttendance()">✅ تأكيد الحضور وإصدار تذكرة</button>
+          <button type="button" class="btn btn-secondary btn-sm" onclick="votePoll()">📊 تصويت ممتاز (<span id="pollCount">18</span>)</button>
+        </div>
+        <div id="liveStatusMsg" style="margin-top:10px; font-size:0.84rem; color:var(--success); display:none;"></div>
+      </div>
+      <div class="live-chat-box">
+        <div style="font-size:0.86rem; font-weight:800; color:var(--yellow-main); margin-bottom:8px;">💬 اسأل المدرب وتفاعل الآن</div>
+        <div class="chat-list" id="liveChatMessages"></div>
+        <form id="liveChatForm" onsubmit="return sendLiveChat(event)" style="display:grid; grid-template-columns: 1fr 2fr auto; gap:8px;">
+          <input type="text" id="liveChatUser" class="form-control" required maxlength="30" placeholder="اسمك" />
+          <input type="text" id="liveChatInput" class="form-control" required maxlength="180" placeholder="اكتب سؤالك للمدرب..." />
+          <button type="submit" class="btn btn-primary btn-sm">إرسال</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- نافذة الحجز ومحاكاة الدفع -->
+  <div class="modal-overlay" id="bookingModal">
+    <div class="modal">
+      <div class="modal-header">
+        <div><span class="card-badge gold" id="modalCategory">حجز برنامج</span><h3 id="modalTitle" style="margin-top:6px;">اسم البرنامج</h3></div>
+        <button class="close-btn" onclick="closeBookingModal()" aria-label="إغلاق">✕</button>
+      </div>
+      <div class="steps-bar">
+        <div class="step-item active" id="stepInd1">1. البيانات والمستوى</div>
+        <div class="step-item" id="stepInd2">2. محاكاة الدفع</div>
+        <div class="step-item" id="stepInd3">3. التذكرة</div>
+      </div>
+      <div class="error-msg" id="modalError"></div>
+
+      <form id="step1Form" onsubmit="return goToStep2(event)">
+        <div class="form-group"><label>الاسم الكامل للطالب / المشارك *</label><input type="text" id="regName" class="form-control" required maxlength="80" placeholder="مثال: أحمد محمد علي" /></div>
+        <div class="form-row">
+          <div class="form-group"><label>البريد الإلكتروني *</label><input type="email" id="regEmail" class="form-control" required maxlength="100" placeholder="name@example.com" /></div>
+          <div class="form-group"><label>رقم الهاتف (واتساب) *</label><input type="tel" id="regPhone" class="form-control" required maxlength="15" placeholder="01012345678" /></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>المستوى المطلوب *</label>
+            <select id="regLevel" class="form-control">
+              <option value="المسار الكامل (المستويات الأربعة)">المسار الكامل (المستويات الأربعة)</option>
+              <option value="المستوى الأول">المستوى الأول</option>
+              <option value="المستوى الثاني">المستوى الثاني</option>
+              <option value="المستوى الثالث">المستوى الثالث</option>
+              <option value="المستوى الرابع">المستوى الرابع</option>
+            </select>
+          </div>
+          <div class="form-group"><label>كود خصم (جرب TENX20)</label><input type="text" id="regPromo" class="form-control" maxlength="20" placeholder="TENX20" /></div>
+        </div>
+        <div class="form-group"><label>الجامعة / المدرسة</label><input type="text" id="regOrg" class="form-control" maxlength="80" placeholder="اسم الكلية أو المدرسة" /></div>
+        <button type="submit" class="btn btn-primary" style="width:100%;">المتابعة إلى الدفع الإلكتروني ←</button>
+      </form>
+
+      <div id="step2Box" style="display:none;">
+        <div class="sim-notice">🛡️ <strong>محاكاة دفع تجريبية:</strong> لا يتم خصم أموال حقيقية ولا إرسال بيانات بطاقات.</div>
+        <div style="display:flex; justify-content:space-between; background:rgba(255,255,255,0.06); padding:12px 14px; border-radius:12px; margin-bottom:14px;">
+          <span>الإجمالي المستحق:</span><strong id="finalPriceLabel" style="color:var(--yellow-main); font-size:1.15rem;">0 ج.م</strong>
+        </div>
+        <div class="pay-methods">
+          <div class="pay-option selected" onclick="selectPayMethod('card', this)">💳 بطاقة بنكية</div>
+          <div class="pay-option" onclick="selectPayMethod('wallet', this)">📱 محفظة / InstaPay</div>
+          <div class="pay-option" onclick="selectPayMethod('cash', this)">🏢 حجز مبدئي</div>
+        </div>
+        <div id="cardFields">
+          <div class="form-group"><label>رقم البطاقة التجريبي</label><input type="text" id="cardNumber" class="form-control" maxlength="19" value="4532 0000 1111 2026" /></div>
+          <div class="form-row">
+            <div class="form-group"><label>الانتهاء</label><input type="text" id="cardExp" class="form-control" maxlength="5" value="12/28" /></div>
+            <div class="form-group"><label>CVV</label><input type="password" id="cardCvv" class="form-control" maxlength="4" value="123" /></div>
+          </div>
+        </div>
+        <div id="walletFields" style="display:none;">
+          <div class="form-group"><label>رقم المحفظة / InstaPay</label><input type="text" id="walletInput" class="form-control" maxlength="40" placeholder="010xxxxxxxx" /></div>
+          <div class="form-group"><label>رمز OTP تجريبي</label><input type="text" id="walletOtp" class="form-control" maxlength="6" value="2026" /></div>
+        </div>
+        <div id="cashFields" style="display:none;"><p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:14px;">سيتم إصدار تذكرة حجز مبدئي برقم مرجعي.</p></div>
+        <div style="display:flex; gap:10px;">
+          <button type="button" class="btn btn-secondary" onclick="backToStep1()">رجوع</button>
+          <button type="button" class="btn btn-primary" style="flex:1;" onclick="completeSimulation()">✅ تأكيد الدفع وإصدار التذكرة</button>
+        </div>
+      </div>
+
+      <div id="step3Box" style="display:none; text-align:center;">
+        <div style="font-size:2.8rem; margin-bottom:6px;">🎉</div>
+        <h3 style="color:var(--success); margin-bottom:8px;">تم الحجز وإصدار التذكرة الإلكترونية بنجاح!</h3>
+        <div id="modalTicketPreview" style="text-align:right; margin-bottom:16px;"></div>
+        <button class="btn btn-primary" style="width:100%;" onclick="closeBookingModal()">عرض جميع تذاكري</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const trainers = [
+      {
+        id: "TRN-1", numLabel: "مدرب 1 • القائد الأكاديمي", name: "الأستاذ الدكتور محمد أبو السعود",
+        role: "استشاري الذكاء الاصطناعي والقيادة التكنولوجية", lecture: "محاضرة تفاعلية: خارطة طريق المستقبل ومهارات TENXBooKiNG",
+        schedule: "السبت والأربعاء • 8:00 مساءً", defaultImg: "trainer-mohamed.jpg",
+        bio: "قائد ومؤسس المسارات التطبيقية التكنولوجية، يركز على ربط التعليم الأكاديمي بسوق العمل والابتكار.",
+        topics: "استراتيجيات الذكاء الاصطناعي، بناء الفرق الطلابية، وتأهيل المشاريع للتحكيم الدولي."
+      },
+      {
+        id: "TRN-2", numLabel: "مدرب 2", name: "المهندس عبد الرحمن",
+        role: "مهندس البرمجيات وأمن التطبيقات المتكاملة", lecture: "محاضرة تفاعلية: بناء مواقع سريعة ومحمية من الاختراق",
+        schedule: "الأحد والثلاثاء • 7:30 مساءً", defaultImg: "trainer-abdelrahman.jpg",
+        bio: "متخصص في هندسة البرمجيات وتطوير تطبيقات الويب الآمنة عالية الأداء.",
+        topics: "أساسيات Full-Stack، حماية المنصات ضد الثغرات (XSS/CSRF)، ونشر التطبيقات السحابية."
+      },
+      {
+        id: "TRN-3", numLabel: "مدربة 3", name: "المهندسة آلاء",
+        role: "مدربة الذكاء الاصطناعي وتحليل البيانات", lecture: "محاضرة تفاعلية: من بايثون إلى نماذج تعلم الآلة",
+        schedule: "الاثنين والخميس • 6:30 مساءً", defaultImg: "trainer-alaa.jpg",
+        bio: "مهندسة بيانات ومدربة متخصصة في تبسيط خوارزميات تعلم الآلة للمبتدئين والمتقدمين.",
+        topics: "تطبيقات بايثون، تنظيف البيانات، وبناء نماذج تنبؤ دقيقة خطوة بخطوة."
+      },
+      {
+        id: "TRN-4", numLabel: "مدربة 4", name: "المهندسة ندى",
+        role: "مدربة النماذج الأولية وتجربة المستخدم والابتكار", lecture: "محاضرة تفاعلية: تحويل الأفكار إلى مشاريع هاكاثون فائزة",
+        schedule: "الجمعة • 5:00 مساءً", defaultImg: "trainer-nada.jpg",
+        bio: "متخصصة في تصميم تجربة المستخدم (UX/UI) وبناء النماذج الأولية السريعة للمسابقات.",
+        topics: "التفكير التصميمي، رسم الشاشات التفاعلية، ومهارات العرض والإقناع في 5 دقائق."
+      }
+    ];
+
+    const catalog = [
+      {
+        id: "CRS-AI-01", section: "courses", category: "ai", categoryLabel: "الذكاء الاصطناعي",
+        title: "دبلومة الذكاء الاصطناعي وتعلم الآلة", desc: "مسار متكامل من البرمجة وحتى بناء نماذج الذكاء التوليدي.",
+        date: "15 ديسمبر 2026", duration: "8 أسابيع", price: 1200,
+        overview: "تؤهلك هذه الدبلومة لفهم عالم الذكاء الاصطناعي عملياً عبر بناء 4 مشاريع حقيقية متدرجة.",
+        tools: "Python, NumPy, Pandas, Scikit-learn, TensorFlow, Prompt Engineering",
+        outcome: "مشروع ذكاء اصطناعي كامل + شهادة إتمام معتمدة من TENXBooKiNG.",
+        levels: [
+          { name: "المستوى الأول: التأسيس البرمجي بـ Python", content: "دراسة أساسيات لغة بايثون، المتغيرات، الحلقات، الدوال، وهياكل البيانات." },
+          { name: "المستوى الثاني: تحليل وهندسة البيانات", content: "تنظيف ومعالجة البيانات بـ NumPy وPandas واستخراج الأنماط والرسوم البيانية." },
+          { name: "المستوى الثالث: خوارزميات تعلم الآلة (ML)", content: "بناء وتدريب نماذج التنبؤ والتصنيف بـ Scikit-learn وقياس دقتها." },
+          { name: "المستوى الرابع: التعلم العميق والذكاء التوليدي", content: "الشبكات العصبية، معالجة اللغات والصور، وبناء مشروع تخرج ذكي متكامل." }
+        ]
+      },
+      {
+        id: "CRS-WEB-02", section: "courses", category: "web", categoryLabel: "البرمجة والويب",
+        title: "تطوير تطبيقات الويب المتكاملة (Full-Stack)", desc: "بناء مواقع ومنصات ويب حديثة سريعة وآمنة ومتجاوبة.",
+        date: "20 ديسمبر 2026", duration: "10 أسابيع", price: 1100,
+        overview: "رحلة شاملة لصناعة المواقع والتطبيقات من تصميم الواجهة وحتى برمجة السيرفر وتأمين البيانات.",
+        tools: "HTML5, CSS3, JavaScript ES6+, APIs, Databases, Cloudflare",
+        outcome: "منصة ويب متكاملة منشورة أونلاين باسمك + ملف أعمال جاهز.",
+        levels: [
+          { name: "المستوى الأول: تصميم واجهات الويب (HTML & CSS)", content: "بناء هيكل الصفحات، التنسيق الاحترافي بـ Flexbox وGrid، والتجاوب مع الهواتف." },
+          { name: "المستوى الثاني: التفاعل والبرمجة بـ JavaScript", content: "برمجة التفاعلات، التعامل مع DOM، التحقق من المدخلات، وجلب البيانات." },
+          { name: "المستوى الثالث: تطوير الخادم وقواعد البيانات", content: "إنشاء السيرفر الخلفي، قواعد البيانات، وإدارة الحسابات والصلاحيات بأمان." },
+          { name: "المستوى الرابع: الأمان والنشر الاحترافي", content: "حماية الموقع من الثغرات (XSS/CSRF)، تحسين الأداء، ورفعه للعمل 24/7." }
+        ]
+      },
+      {
+        id: "CRS-ROB-03", section: "courses", category: "robotics", categoryLabel: "الروبوتات والهاردوير",
+        title: "تصميم وبرمجة الروبوتات الذكية", desc: "تطبيق عملي على الإلكترونيات والمتحكمات لبناء روبوت متكامل.",
+        date: "2 يناير 2027", duration: "6 أسابيع", price: 950,
+        overview: "برنامج تطبيقي داخل المعمل لتعلم قراءة الدوائر الكهربائية وبرمجة روبوت يتفاعل مع البيئة حوله.",
+        tools: "Arduino, ESP32, C/C++, Ultrasonic & IR Sensors, Motor Drivers",
+        outcome: "روبوت ذكي من تنفيذك يشارك في تحدي السباقات والمسابقات الطلابية.",
+        levels: [
+          { name: "المستوى الأول: أساسيات الكهرباء والإلكترونيات", content: "فهم الدوائر، المقاومات، لوحات التجارب، وقراءة المخططات الهندسية." },
+          { name: "المستوى الثاني: برمجة المتحكمات (Arduino / ESP32)", content: "كتابة الأكواد للتحكم في الإشارات الرقمية والتناظرية وتشغيل المواتير." },
+          { name: "المستوى الثالث: دمج الحساسات والاتصال اللاسلكي", content: "تشغيل حساسات المسافة والألوان، والتحكم بالروبوت عبر Wi-Fi وBluetooth." },
+          { name: "المستوى الرابع: تجميع الروبوت والسباق التطبيقي", content: "تصميم الهيكل، برمجة الحركة الذاتية، وتجهيز الروبوت للمنافسات." }
+        ]
+      },
+      {
+        id: "CRS-SKL-04", section: "courses", category: "skills", categoryLabel: "ريادة الأعمال",
+        title: "من الفكرة إلى المشروع التقني الناشئ", desc: "بناء مشروع تقني ناجح من الصفر وتقديمه أمام المستثمرين.",
+        date: "5 يناير 2027", duration: "4 أسابيع", price: 600,
+        overview: "يعلمك كيف تفكر كرائد أعمال تقني وتختبر فكرتك في السوق وتبني عرضاً استثمارياً مقنعاً.",
+        tools: "Design Thinking, Business Model Canvas, MVP Planning, Pitch Deck",
+        outcome: "ملف عرض استثماري جاهز للمشاركة في المسابقات وحاضنات الأعمال.",
+        levels: [
+          { name: "المستوى الأول: اكتشاف المشكلة وتوليد الأفكار", content: "أساليب التفكير التصميمي وتحويل التحديات اليومية لأفكار مشاريع." },
+          { name: "المستوى الثاني: دراسة السوق ونموذج العمل", content: "تحليل المنافسين، تحديد الجمهور، وإعداد Business Model Canvas." },
+          { name: "المستوى الثالث: بناء المنتج الأولي وإدارة الفريق", content: "تخطيط المزايا الأساسية (MVP)، قيادة فريق العمل، وإدارة المهام." },
+          { name: "المستوى الرابع: مهارات العرض والإقناع (Pitching)", content: "تصميم عرض احترافي والتقديم أمام المستثمرين ولجان التحكيم بثقة." }
+        ]
+      },
+      {
+        id: "CMP-01", section: "camps", category: "camp", categoryLabel: "معسكر تقني مكثف",
+        title: "معسكر TENXBooKiNG الشتوي للذكاء الاصطناعي", desc: "معسكر عملي مكثف لتنفيذ تحديات جماعية ومشروع حقيقي.",
+        date: "25 يناير 2027", duration: "5 أيام", price: 850,
+        overview: "تجربة معسكر متكاملة تجمع بين التدريب السريع، التحديات الجماعية، والإشراف المباشر من المدربين.",
+        tools: "AI Tools, Python Notebooks, Team Collaboration, Live Prototyping",
+        outcome: "إنجاز مشروع فريق كامل في 5 أيام + شهادة اجتياز المعسكر.",
+        levels: [
+          { name: "المستوى الأول: مدخل عملي وهندسة الأوامر", content: "فهم أدوات الذكاء الاصطناعي الحديثة وصياغة الأوامر الاحترافية." },
+          { name: "المستوى الثاني: تجهيز البيانات وبناء النموذج", content: "اختيار بيانات حقيقية وتدريب نموذج ذكي لحل مشكلة واقعية ضمن الفريق." },
+          { name: "المستوى الثالث: ربط النموذج بواجهة تطبيق", content: "دمج الذكاء الاصطناعي داخل موقع أو تطبيق تفاعلي واختبار تجربته." },
+          { name: "المستوى الرابع: يوم العرض والتقييم النهائي", content: "مناقشة المشروع أمام لجنة الخبراء وتطويره واستلام الشهادة." }
+        ]
+      },
+      {
+        id: "WRK-02", section: "camps", category: "workshop", categoryLabel: "ورشة عمل تطبيقية",
+        title: "ورشة بناء النماذج الأولية (Prototype Lab)", desc: "تحويل أفكارك إلى نماذج عملية قابلة للاختبار والتطوير.",
+        date: "12 ديسمبر 2026", duration: "يوم واحد", price: 250,
+        overview: "ورشة مركزة ليوم واحد تعلمك أسرع الطرق لتحويل فكرة مكتوبة إلى نموذج تفاعلي حي.",
+        tools: "User Flow Mapping, Wireframing, Interactive UI Prototyping",
+        outcome: "نموذج أولي تفاعلي كامل لفكرتك جاهز للعرض والاختبار.",
+        levels: [
+          { name: "المستوى الأول: التخطيط ورسم الفكرة", content: "تحديد هدف المنتج، رسم رحلة المستخدم، وترتيب أولويات المزايا." },
+          { name: "المستوى الثاني: تصميم الشاشات المبدئية", content: "إعداد Wireframes وتوزيع العناصر بوضوح وسهولة استخدام." },
+          { name: "المستوى الثالث: بناء النموذج التفاعلي", content: "تحويل التصميم إلى نموذج حي قابل للنقر والتجربة على الهاتف." },
+          { name: "المستوى الرابع: اختبار المستخدمين والتحسين", content: "تجربة النموذج مع مشاركين فعليين ورصد الملاحظات للتطوير الفوري." }
+        ]
+      },
+      {
+        id: "WRK-03", section: "camps", category: "workshop", categoryLabel: "ورشة أمن سيبراني",
+        title: "أساسيات حماية تطبيقات الويب من الاختراق", desc: "فهم أشهر ثغرات الويب وكيفية تأمين المنصات والبيانات.",
+        date: "19 ديسمبر 2026", duration: "يومان", price: 350,
+        overview: "ورشة أمن سيبراني دفاعي لفهم كيف يفكر المهاجم وكيف تحصن كودك وموقعك ضد الثغرات.",
+        tools: "OWASP Top 10, CSP Headers, Input Sanitization, Secure Auth",
+        outcome: "قدرة عملية على فحص تطبيقات الويب وسد الثغرات الأمنية الأساسية.",
+        levels: [
+          { name: "المستوى الأول: مفاهيم الأمان وبنية الويب", content: "فهم تبادل البيانات، التشفير (HTTPS)، وتصنيف الثغرات (OWASP)." },
+          { name: "المستوى الثاني: ثغرات الحقن وحماية المدخلات", content: "تطبيق عملي لفهم هجمات XSS وSQLi وكيفية تنقية المدخلات." },
+          { name: "المستوى الثالث: تأمين الجلسات والصلاحيات", content: "حماية تسجيل الدخول، تشفير كلمات المرور، وضبط سياسات CSP." },
+          { name: "المستوى الرابع: الفحص الأمني وإصلاح الثغرات", content: "اختبار موقع تجريبي لاكتشاف نقاط الضعف وإغلاقها برمجياً." }
+        ]
+      },
+      {
+        id: "EVT-HACK-01", section: "events", category: "competition", categoryLabel: "مسابقة كبرى • AI Hackathon",
+        title: "هاكاثون الذكاء الاصطناعي 2026", desc: "تحدي الابتكار الأكبر لطلاب الجامعات والمدارس بالذكاء الاصطناعي.",
+        date: "28 ديسمبر 2026", duration: "48 ساعة", price: 150,
+        overview: "مسابقة تنافسية لمدة 48 ساعة تعمل فيها الفرق على ابتكار حلول ذكية لمشكلات التعليم والصحة والبيئة.",
+        tools: "فرق 2-4 أفراد، إرشاد فني مباشر (Mentorship)، تحكيم وتكريم",
+        outcome: "جوائز مالية وعينية للفرق الفائزة + شهادات مشاركة وتقدير للجميع.",
+        levels: [
+          { name: "المستوى الأول: تكوين الفرق واختيار التحدي", content: "تشكيل فريق من 2 إلى 4 أفراد ودراسة محاور المسابقة لاختيار مشكلة." },
+          { name: "المستوى الثاني: التصميم المعماري وخطة التنفيذ", content: "تحديد الحل التقني، توزيع الأدوار، وبناء خطة الـ 48 ساعة." },
+          { name: "المستوى الثالث: التطوير والمتابعة مع الموجهين", content: "برمجة الحل وبناء النموذج التجريبي مع جلسات إرشاد فني من الخبراء." },
+          { name: "المستوى الرابع: العرض النهائي وإعلان الفائزين", content: "تقديم المشروع أمام لجنة التحكيم والمنافسة على الجوائز والشهادات." }
+        ]
+      },
+      {
+        id: "EVT-ROB-02", section: "events", category: "competition", categoryLabel: "بطولة الروبوتات",
+        title: "تحدي الروبوتات والسيارات الذكية", desc: "منافسة لاختبار سرعة ودقة الروبوتات في اجتياز المسارات.",
+        date: "15 يناير 2027", duration: "يوم كامل", price: 200,
+        overview: "بطولة هندسية ميدانية تتنافس فيها الروبوتات على تتبع المسارات الذكية وتفادي العقبات في أقل زمن.",
+        tools: "حلبة سباق رسمية، جوائز أسرع روبوت وأفضل تصميم هندسي",
+        outcome: "خبرة مسابقات هندسية + كؤوس وشهادات للفرق المتصدرة.",
+        levels: [
+          { name: "المستوى الأول: الفحص الفني وقواعد الحلبة", content: "مراجعة شروط الوزن والأبعاد، واستلام خريطة المسار." },
+          { name: "المستوى الثاني: المعايرة والبرمجة التكيفية", content: "ضبط حساسات تتبع الخط وتفادي العوائق حسب إضاءة الحلبة." },
+          { name: "المستوى الثالث: جولات التجارب وتحسين الأداء", content: "اختبار الروبوت على المسار الفعلي لرفع السرعة والاستقرار." },
+          { name: "المستوى الرابع: التصفيات النهائية والتتويج", content: "خوض السباقات الرسمية وتكريم الفرق الفائزة." }
+        ]
+      },
+      {
+        id: "EVT-SUM-03", section: "events", category: "event", categoryLabel: "ملتقى طلابي",
+        title: "يوم عرض المشاريع والتوظيف (Demo Day)", desc: "عرض مشروعات الطلاب أمام شركات التكنولوجيا وفرص التدريب.",
+        date: "30 يناير 2027", duration: "يوم كامل", price: 0,
+        overview: "ملتقى ختامي يجمع بين الطلاب المبدعين وممثلي الشركات التكنولوجية لعرض المشاريع واقتناص فرص التدريب.",
+        tools: "أجنحة عرض المشاريع، مقابلات سريعة، شهادات وتوصيات",
+        outcome: "تشبيك مباشر مع سوق العمل + شهادات تقدير مجانية للحضور.",
+        levels: [
+          { name: "المستوى الأول: تجهيز ملف المشروع والعرض", content: "إعداد الملخص التنفيذي، النسخة التجريبية، وتنظيم جناح العرض." },
+          { name: "المستوى الثاني: ورشة الاستعداد للمقابلات", content: "التدريب على عرض المهارات التقنية وصياغة السيرة الذاتية." },
+          { name: "المستوى الثالث: المعرض التفاعلي أمام الشركات", content: "شرح المشروع للزوار وممثلي الشركات ورواد الأعمال." },
+          { name: "المستوى الرابع: التشبيك المهني والتكريم", content: "الترشح لفرص التدريب والتوظيف واستلام شهادات التقدير." }
+        ]
+      }
+    ];
+
+    const STORAGE_KEY = "tenxbooking_registrations_v1";
+    const POSTER_KEY = "tenxbooking_poster_dataurl";
+    let currentBookingItem = null;
+    let currentLiveTrainer = null;
+    let selectedPayMethod = "card";
+    let computedFinalPrice = 0;
+    let handRaised = false;
+    let pollVotes = 18;
+    let voiceEnabled = true;
+    let recognition = null;
+    let isListening = false;
+
+    function cleanText(str) { return String(str || "").replace(/[<>]/g, "").trim(); }
+    function normalizeAr(str) {
+      return cleanText(str).toLowerCase().replace(/[\u064B-\u065F]/g, "").replace(/[أإآ]/g, "ا").replace(/ة/g, "ه").replace(/ى/g, "ي");
+    }
+
+    function activateModule(moduleName) {
+      const wrap = document.getElementById("workspaceContainer");
+      wrap.classList.add("open");
+      document.querySelectorAll(".module-panel").forEach((p) => p.classList.remove("active"));
+      const target = document.getElementById("panel-" + moduleName);
+      if (target) target.classList.add("active");
+      document.querySelectorAll(".dock-btn[data-module]").forEach((b) => b.classList.toggle("active", b.dataset.module === moduleName));
+      document.getElementById("navLinks").classList.remove("show");
+      wrap.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    function collapseWorkspace() {
+      document.getElementById("workspaceContainer").classList.remove("open");
+      document.querySelectorAll(".dock-btn").forEach((b) => b.classList.remove("active"));
+      document.getElementById("navLinks").classList.remove("show");
+    }
+
+    // ==============================
+    // المساعد X + المايك والرد الصوتي
+    // ==============================
+    function toggleVoiceReply() {
+      voiceEnabled = !voiceEnabled;
+      document.getElementById("xVoiceToggle").textContent = voiceEnabled ? "🔊" : "🔇";
+      if (!voiceEnabled && "speechSynthesis" in window) window.speechSynthesis.cancel();
+    }
+
+    function speakText(text) {
+      if (!voiceEnabled || !("speechSynthesis" in window)) return;
+      try {
+        window.speechSynthesis.cancel();
+        const cleanSpeech = text.replace(/[📌📖🛠️🎯📅⏱️💰👨‍🏫🎓🎟️📚⚡🤖✨•|]/g, " ");
+        const utter = new SpeechSynthesisUtterance(cleanSpeech);
+        utter.lang = "ar-EG";
+        utter.rate = 1.05;
+        const voices = window.speechSynthesis.getVoices();
+        const arVoice = voices.find((v) => v.lang && v.lang.startsWith("ar"));
+        if (arVoice) utter.voice = arVoice;
+        window.speechSynthesis.speak(utter);
+      } catch (e) {}
+    }
+
+    function toggleAssistant(forceState) {
+      const panel = document.getElementById("assistantPanel");
+      const open = typeof forceState === "boolean" ? forceState : !panel.classList.contains("open");
+      panel.classList.toggle("open", open);
+      if (open && document.getElementById("xChatBody").children.length === 0) {
+        appendXMessage("bot", "أهلاً بك في منصة TENXBooKiNG! أنا المساعد X 🤖🎤\nاضغط على المايك واتكلم معايا أو اكتب سؤالك وهرد عليك فوراً عن الكورسات، المستويات، المدربين، المحاضرات التفاعلية، والخصم!");
+      }
+    }
+
+    function appendXMessage(role, text) {
+      const body = document.getElementById("xChatBody");
+      const div = document.createElement("div"); div.className = "x-msg " + role; div.textContent = text;
+      body.appendChild(div); body.scrollTop = body.scrollHeight;
+    }
+
+    function generateAssistantReply(rawQuery) {
+      const q = normalizeAr(rawQuery);
+      if (!q) return "اسألني بصوتك أو بالكتابة وسأرد عليك فوراً.";
+
+      const matchedTrainer = trainers.find((t) =>
+        normalizeAr(t.name).includes(q) || (q.includes("السعود") && t.id === "TRN-1") ||
+        (q.includes("عبد الرحمن") && t.id === "TRN-2") || (q.includes("الاء") && t.id === "TRN-3") || (q.includes("ندى") && t.id === "TRN-4")
+      );
+      if (matchedTrainer) {
+        return `${matchedTrainer.name}، تخصصه ${matchedTrainer.role}. ${matchedTrainer.bio} وموعد محاضرته التفاعلية ${matchedTrainer.schedule}.`;
+      }
+
+      const matchedItems = catalog.filter((item) => {
+        const hay = normalizeAr(item.title + " " + item.categoryLabel + " " + item.desc + " " + item.overview);
+        return q.split(/\s+/).some((w) => w.length > 2 && hay.includes(w));
+      });
+      if (matchedItems.length > 0 && !q.includes("كل") && !q.includes("ايه هي الكورسات")) {
+        const top = matchedItems[0];
+        const lvls = top.levels.map((l) => `• ${l.name}: ${l.content}`).join("\n");
+        return `📌 ${top.title} (${top.categoryLabel})\n📖 الشرح: ${top.overview}\n🛠️ الأدوات: ${top.tools}\n📅 ${top.date} | ⏱️ ${top.duration} | 💰 ${top.price === 0 ? "مجاني" : top.price + " ج.م"}\n\nالمستويات الأربعة:\n${lvls}`;
+      }
+
+      if (q.includes("مدرب") || q.includes("دكتور") || q.includes("محاضر") || q.includes("تفاعلي")) {
+        return "نخبة مدربي TENXBooKiNG للمحاضرات التفاعلية هم: الأستاذ الدكتور محمد أبو السعود، المهندس عبد الرحمن، المهندسة آلاء، والمهندسة ندى. افتح أيقونة المحاضرات التفاعلية للدخول والمشاركة.";
+      }
+      if (q.includes("خصم") || q.includes("كود") || q.includes("حجز") || q.includes("دفع") || q.includes("تذكر")) {
+        return "للحجز في TENXBooKiNG، اضغط على أي بطاقة ثم احجز الآن، واستخدم كود الخصم TENX20 للحصول على خصم عشرين في المائة، وستصدر تذكرتك الإلكترونية فوراً.";
+      }
+      if (q.includes("كورس") || q.includes("سعر") || q.includes("اسعار") || q.includes("برنامج")) {
+        return "البرامج المتاحة:\n" + catalog.map((c) => `• ${c.title}: ${c.price === 0 ? "مجاني" : c.price + " ج.م"} (${c.date})`).join("\n");
+      }
+      if (q.includes("هاكاثون") || q.includes("مسابق") || q.includes("معسكر") || q.includes("ورشه")) {
+        return "المعسكرات والفعاليات المتاحة:\n" + catalog.filter((c) => c.section !== "courses").map((c) => `• ${c.title} — ${c.date} (${c.price === 0 ? "مجاني" : c.price + " ج.م"})`).join("\n");
+      }
+      return "أنا المساعد X في منصة TENXBooKiNG! اسألني عن الكورسات والأسعار، المدربين والمحاضرات التفاعلية، الهاكاثون، أو كود الخصم.";
+    }
+
+    function askQuick(q) {
+      appendXMessage("user", q);
+      const reply = generateAssistantReply(q);
+      appendXMessage("bot", reply);
+      speakText(reply);
+    }
+
+    function handleAssistantSubmit(e) {
+      e.preventDefault();
+      const inp = document.getElementById("xInput");
+      const q = cleanText(inp.value);
+      if (!q) return false;
+      appendXMessage("user", q);
+      inp.value = "";
+      const reply = generateAssistantReply(q);
+      appendXMessage("bot", reply);
+      speakText(reply);
+      return false;
+    }
+
+    function toggleMic() {
+      const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+      const micBtn = document.getElementById("xMicBtn");
+      if (!SpeechRec) {
+        appendXMessage("bot", "هذا المتصفح لا يدعم المايك الصوتي؛ استخدم Chrome أو Edge أو اكتب سؤالك وسأرد فوراً.");
+        return;
+      }
+      if (isListening && recognition) { recognition.stop(); return; }
+      try {
+        recognition = new SpeechRec();
+        recognition.lang = "ar-EG";
+        recognition.interimResults = false;
+        recognition.maxAlternatives = 1;
+        recognition.onstart = () => { isListening = true; micBtn.classList.add("listening"); micBtn.textContent = "⏹️"; };
+        recognition.onresult = (event) => {
+          const transcript = cleanText(event.results[0][0].transcript);
+          if (transcript) {
+            appendXMessage("user", "🎤 " + transcript);
+            const reply = generateAssistantReply(transcript);
+            appendXMessage("bot", reply);
+            speakText(reply);
+          }
+        };
+        recognition.onerror = () => {
+          appendXMessage("bot", "تعذر تشغيل المايك. تأكد من السماح بالمايكروفون وفتح الموقع على HTTPS أو localhost.");
+        };
+        recognition.onend = () => { isListening = false; micBtn.classList.remove("listening"); micBtn.textContent = "🎤"; };
+        recognition.start();
+      } catch (err) {
+        isListening = false; micBtn.classList.remove("listening"); micBtn.textContent = "🎤";
+      }
+    }
+
+    function initPoster() {
+      try {
+        const saved = localStorage.getItem(POSTER_KEY);
+        if (saved) {
+          document.getElementById("heroPosterImg").src = saved;
+          document.getElementById("heroPosterImg").style.display = "block";
+          document.getElementById("posterFallback").style.display = "none";
+        }
+      } catch (e) {}
+    }
+
+    function handleImageFallback() {
+      document.getElementById("heroPosterImg").style.display = "none";
+      document.getElementById("posterFallback").style.display = "flex";
+    }
+
+    document.getElementById("posterFileInput").addEventListener("change", function (e) {
+      const file = e.target.files[0]; if (!file || !file.type.startsWith("image/")) return;
+      const reader = new FileReader();
+      reader.onload = function (ev) {
+        const img = document.getElementById("heroPosterImg");
+        img.src = ev.target.result; img.style.display = "block";
+        document.getElementById("posterFallback").style.display = "none";
+        try { localStorage.setItem(POSTER_KEY, ev.target.result); } catch (err) {}
+      };
+      reader.readAsDataURL(file);
+    });
+
+    function renderInstructors() {
+      const grid = document.getElementById("instructorsGrid"); grid.innerHTML = "";
+      trainers.forEach((tr) => {
+        const card = document.createElement("article"); card.className = "card";
+        const top = document.createElement("div");
+
+        const photoWrap = document.createElement("div"); photoWrap.className = "trainer-photo-wrap";
+        const img = document.createElement("img");
+        let savedImg = ""; try { savedImg = localStorage.getItem("tenxb_trainer_" + tr.id) || ""; } catch (e) {}
+        img.src = savedImg || tr.defaultImg; img.alt = tr.name;
+        const fb = document.createElement("div"); fb.className = "trainer-fallback"; fb.textContent = "👤 " + tr.name + " (اختر الصورة)";
+        img.onerror = () => { img.style.display = "none"; fb.style.display = "block"; };
+
+        const uploadLbl = document.createElement("label"); uploadLbl.className = "trainer-upload-btn"; uploadLbl.textContent = "📷 تغيير الصورة";
+        uploadLbl.onclick = (e) => e.stopPropagation();
+        const fileInp = document.createElement("input"); fileInp.type = "file"; fileInp.accept = "image/*"; fileInp.style.display = "none";
+        fileInp.onchange = (e) => {
+          const f = e.target.files[0]; if (!f || !f.type.startsWith("image/")) return;
+          const r = new FileReader();
+          r.onload = (ev) => {
+            img.src = ev.target.result; img.style.display = "block"; fb.style.display = "none";
+            try { localStorage.setItem("tenxb_trainer_" + tr.id, ev.target.result); } catch (err) {}
+          };
+          r.readAsDataURL(f);
+        };
+        uploadLbl.appendChild(fileInp); photoWrap.append(img, fb, uploadLbl);
+
+        const headRow = document.createElement("div"); headRow.style.display = "flex"; headRow.style.justifyContent = "space-between"; headRow.style.alignItems = "center";
+        const badge = document.createElement("span"); badge.className = "card-badge gold"; badge.textContent = tr.numLabel;
+        const live = document.createElement("span"); live.className = "live-dot"; live.textContent = "تفاعلي";
+        headRow.append(badge, live);
+
+        const h3 = document.createElement("h3"); h3.textContent = tr.name;
+        const role = document.createElement("p"); role.textContent = tr.role;
+        const lec = document.createElement("p"); lec.style.color = "#dce7ff"; lec.style.marginTop = "6px"; lec.style.fontWeight = "700"; lec.textContent = "🎓 " + tr.lecture;
+
+        const hint = document.createElement("div"); hint.className = "card-tap-hint";
+        hint.textContent = "👆 اضغط على البطاقة لشرح الخبرة والمحاور ▾";
+
+        const details = document.createElement("div"); details.className = "card-inner-details";
+        details.onclick = (e) => e.stopPropagation();
+        const r1 = document.createElement("div"); r1.className = "overview-row";
+        const r1s = document.createElement("strong"); r1s.textContent = "نبذة: ";
+        r1.append(r1s, document.createTextNode(tr.bio));
+        const r2 = document.createElement("div"); r2.className = "overview-row";
+        const r2s = document.createElement("strong"); r2s.textContent = "محاور المحاضرة: ";
+        r2.append(r2s, document.createTextNode(tr.topics));
+        details.append(r1, r2);
+
+        card.onclick = () => {
+          const isOpen = card.classList.toggle("expanded");
+          hint.textContent = isOpen ? "👆 اضغط لإخفاء الشرح ▴" : "👆 اضغط على البطاقة لشرح الخبرة والمحاور ▾";
+        };
+
+        top.append(photoWrap, headRow, h3, role, lec, hint, details);
+
+        const bottom = document.createElement("div");
+        const meta = document.createElement("div"); meta.className = "card-meta"; meta.textContent = "🗓️ " + tr.schedule;
+        const btn = document.createElement("button"); btn.className = "btn btn-live btn-sm"; btn.style.width = "100%"; btn.style.marginTop = "10px";
+        btn.textContent = "🎥 حضور المحاضرة التفاعلية";
+        btn.onclick = (e) => { e.stopPropagation(); openLiveRoom(tr.id); };
+
+        bottom.append(meta, btn); card.append(top, bottom); grid.appendChild(card);
+      });
+    }
+
+    function openLiveRoom(trainerId) {
+      const tr = trainers.find((t) => t.id === trainerId); if (!tr) return;
+      currentLiveTrainer = tr; handRaised = false;
+      document.getElementById("liveHandBtn").textContent = "✋ رفع اليد للمشاركة";
+      document.getElementById("liveLectureTitle").textContent = tr.lecture;
+      document.getElementById("liveTrainerName").textContent = `مع ${tr.name} • ${tr.schedule}`;
+      document.getElementById("liveLectureDesc").textContent = `${tr.bio} | المحاور: ${tr.topics}`;
+      document.getElementById("liveStatusMsg").style.display = "none";
+      const chat = document.getElementById("liveChatMessages"); chat.innerHTML = "";
+      addChatBubble(tr.name, "أهلاً بكم يا أبطال TENXBooKiNG! اكتبوا أسئلتكم هنا وهنجاوب عليها مباشرة.");
+      document.getElementById("liveModal").classList.add("open");
+    }
+
+    function closeLiveRoom() { document.getElementById("liveModal").classList.remove("open"); }
+    function addChatBubble(sender, text) {
+      const list = document.getElementById("liveChatMessages");
+      const div = document.createElement("div"); div.className = "chat-msg";
+      const st = document.createElement("strong"); st.textContent = sender + ": ";
+      const sp = document.createElement("span"); sp.textContent = text;
+      div.append(st, sp); list.appendChild(div); list.scrollTop = list.scrollHeight;
+    }
+    function sendLiveChat(e) {
+      e.preventDefault();
+      const u = cleanText(document.getElementById("liveChatUser").value);
+      const m = cleanText(document.getElementById("liveChatInput").value);
+      if (!u || !m) return false;
+      addChatBubble(u, m); document.getElementById("liveChatInput").value = "";
+      return false;
+    }
+    function toggleRaiseHand() {
+      handRaised = !handRaised;
+      document.getElementById("liveHandBtn").textContent = handRaised ? "✋ تم رفع اليد (إلغاء)" : "✋ رفع اليد للمشاركة";
+      const msg = document.getElementById("liveStatusMsg");
+      msg.textContent = handRaised ? `تم إرسال طلب المداخلة إلى ${currentLiveTrainer.name}.` : "تم إلغاء رفع اليد.";
+      msg.style.display = "block";
+    }
+    function votePoll() { pollVotes += 1; document.getElementById("pollCount").textContent = pollVotes; }
+    function confirmLiveAttendance() {
+      const studentName = cleanText(document.getElementById("liveChatUser").value) || "طالب TENXBooKiNG";
+      const ticket = {
+        ticketId: `LIVE-${Math.floor(100000 + Math.random() * 900000)}`, itemId: currentLiveTrainer.id, itemTitle: currentLiveTrainer.lecture,
+        date: currentLiveTrainer.schedule, name: studentName, email: "live@tenxbooking.com", phone: "حضور تفاعلي مباشر",
+        level: `مع ${currentLiveTrainer.name}`, paidAmount: 0, payMethodLabel: "تذكرة حضور محاضرة تفاعلية", createdAt: new Date().toISOString()
+      };
+      const list = getRegistrations(); list.push(ticket); saveRegistrations(list); renderTickets();
+      const msg = document.getElementById("liveStatusMsg");
+      msg.textContent = `✅ تم تسجيل حضورك وإصدار التذكرة ${ticket.ticketId} في قسم تذاكري!`; msg.style.display = "block";
+    }
+
+    function createItemCard(item) {
+      const card = document.createElement("article"); card.className = "card";
+      const top = document.createElement("div");
+      const badge = document.createElement("span"); badge.className = "card-badge" + (item.section === "events" ? " gold" : ""); badge.textContent = item.categoryLabel;
+      const title = document.createElement("h3"); title.textContent = item.title;
+      const desc = document.createElement("p"); desc.textContent = item.desc;
+
+      const hint = document.createElement("div"); hint.className = "card-tap-hint";
+      hint.textContent = "👆 اضغط على البطاقة لعرض الشرح والمستويات (4) ▾";
+
+      const innerDetails = document.createElement("div"); innerDetails.className = "card-inner-details";
+      innerDetails.onclick = (e) => e.stopPropagation();
+
+      const row1 = document.createElement("div"); row1.className = "overview-row";
+      const s1 = document.createElement("strong"); s1.textContent = "📖 الشرح: ";
+      row1.append(s1, document.createTextNode(item.overview));
+
+      const row2 = document.createElement("div"); row2.className = "overview-row";
+      const s2 = document.createElement("strong"); s2.textContent = "🛠️ الأدوات: ";
+      row2.append(s2, document.createTextNode(item.tools));
+
+      const row3 = document.createElement("div"); row3.className = "overview-row";
+      const s3 = document.createElement("strong"); s3.textContent = "🎯 المخرجات: ";
+      row3.append(s3, document.createTextNode(item.outcome));
+
+      const lvlsHeader = document.createElement("div");
+      lvlsHeader.style.fontSize = "0.8rem"; lvlsHeader.style.fontWeight = "800"; lvlsHeader.style.color = "var(--cyan-glow)"; lvlsHeader.style.marginTop = "4px";
+      lvlsHeader.textContent = "📚 المستويات الأربعة (اضغط أي مستوى للشرح):";
+
+      innerDetails.append(row1, row2, row3, lvlsHeader);
+
+      item.levels.forEach((lvl) => {
+        const lvlEl = document.createElement("div"); lvlEl.className = "level-item";
+        const trigger = document.createElement("button");
+        trigger.type = "button"; trigger.className = "level-trigger";
+        const nameSpan = document.createElement("span"); nameSpan.textContent = lvl.name;
+        const arrowSpan = document.createElement("span"); arrowSpan.textContent = "+";
+        trigger.append(nameSpan, arrowSpan);
+        const lvlDesc = document.createElement("div"); lvlDesc.className = "level-desc"; lvlDesc.textContent = lvl.content;
+        trigger.onclick = (e) => {
+          e.stopPropagation();
+          const isOpen = lvlEl.classList.toggle("open");
+          arrowSpan.textContent = isOpen ? "−" : "+";
+        };
+        lvlEl.append(trigger, lvlDesc);
+        innerDetails.appendChild(lvlEl);
+      });
+
+      card.onclick = () => {
+        const isOpen = card.classList.toggle("expanded");
+        hint.textContent = isOpen ? "👆 اضغط على البطاقة لإخفاء الشرح ▴" : "👆 اضغط على البطاقة لعرض الشرح والمستويات (4) ▾";
+      };
+
+      top.append(badge, title, desc, hint, innerDetails);
+
+      const bottom = document.createElement("div");
+      const meta = document.createElement("div"); meta.className = "card-meta"; meta.textContent = `📅 ${item.date}  •  ⏱️ ${item.duration}`;
+      const footer = document.createElement("div"); footer.className = "card-footer";
+      const price = document.createElement("div"); price.className = "price-tag"; price.textContent = item.price === 0 ? "مجاني" : `${item.price} ج.م`;
+      const btn = document.createElement("button"); btn.className = "btn btn-primary btn-sm";
+      btn.textContent = item.section === "events" ? "سجّل الآن" : "احجز الآن";
+      btn.onclick = (e) => { e.stopPropagation(); openBookingModal(item.id); };
+
+      footer.append(price, btn); bottom.append(meta, footer); card.append(top, bottom);
+      return card;
+    }
+
+    function renderCatalog(courseFilter = "all") {
+      const coursesGrid = document.getElementById("coursesGrid");
+      const campsGrid = document.getElementById("campsGrid");
+      const eventsGrid = document.getElementById("eventsGrid");
+      const scheduleBody = document.getElementById("scheduleTableBody");
+      coursesGrid.innerHTML = ""; campsGrid.innerHTML = ""; eventsGrid.innerHTML = ""; scheduleBody.innerHTML = "";
+
+      catalog.forEach((item) => {
+        if (item.section === "courses") {
+          if (courseFilter === "all" || item.category === courseFilter) coursesGrid.appendChild(createItemCard(item));
+        } else if (item.section === "camps") {
+          campsGrid.appendChild(createItemCard(item));
+        } else if (item.section === "events") {
+          eventsGrid.appendChild(createItemCard(item));
+        }
+
+        const tr = document.createElement("tr");
+        const tdTitle = document.createElement("td"); tdTitle.textContent = item.title;
+        const tdCat = document.createElement("td"); tdCat.textContent = item.categoryLabel;
+        const tdDate = document.createElement("td"); tdDate.textContent = item.date;
+        const tdDur = document.createElement("td"); tdDur.textContent = item.duration;
+        const tdPrice = document.createElement("td"); tdPrice.style.color = "var(--yellow-main)"; tdPrice.style.fontWeight = "800";
+        tdPrice.textContent = item.price === 0 ? "مجاني" : `${item.price} ج.م`;
+        const tdStatus = document.createElement("td");
+        const pill = document.createElement("span"); pill.className = "status-pill"; pill.textContent = "متاح (4 مستويات)"; tdStatus.appendChild(pill);
+        const tdAct = document.createElement("td");
+        const rowBtn = document.createElement("button"); rowBtn.className = "btn btn-primary btn-sm"; rowBtn.textContent = "احجز";
+        rowBtn.onclick = () => openBookingModal(item.id);
+        tdAct.appendChild(rowBtn);
+        tr.append(tdTitle, tdCat, tdDate, tdDur, tdPrice, tdStatus, tdAct);
+        scheduleBody.appendChild(tr);
+      });
+    }
+
+    document.getElementById("courseFilters").addEventListener("click", (e) => {
+      if (!e.target.classList.contains("filter-btn")) return;
+      document.querySelectorAll("#courseFilters .filter-btn").forEach((b) => b.classList.remove("active"));
+      e.target.classList.add("active");
+      renderCatalog(e.target.dataset.filter);
+    });
+
+    document.getElementById("menuToggle").addEventListener("click", () => {
+      document.getElementById("navLinks").classList.toggle("show");
+    });
+
+    function getRegistrations() {
+      try { const raw = localStorage.getItem(STORAGE_KEY); const parsed = raw ? JSON.parse(raw) : []; return Array.isArray(parsed) ? parsed : []; } catch (e) { return []; }
+    }
+    function saveRegistrations(list) { localStorage.setItem(STORAGE_KEY, JSON.stringify(list)); }
+
+    function buildTicketElement(ticket, withActions = true) {
+      const card = document.createElement("div"); card.className = "ticket-card";
+      const info = document.createElement("div");
+      const badge = document.createElement("span"); badge.className = "card-badge gold"; badge.textContent = `تذكرة إلكترونية • ${ticket.ticketId}`;
+      const h3 = document.createElement("h3"); h3.style.margin = "8px 0 4px"; h3.textContent = ticket.itemTitle;
+      const meta1 = document.createElement("p"); meta1.style.color = "var(--text-muted)"; meta1.style.fontSize = "0.9rem";
+      meta1.textContent = `👤 ${ticket.name}  |  📱 ${ticket.phone}  |  🎯 ${ticket.level || "المسار الكامل"}`;
+      const meta2 = document.createElement("p"); meta2.style.color = "var(--text-muted)"; meta2.style.fontSize = "0.85rem";
+      meta2.textContent = `📅 ${ticket.date}  |  💳 ${ticket.payMethodLabel} (${ticket.paidAmount === 0 ? "مجاني" : ticket.paidAmount + " ج.م"})`;
+      info.append(badge, h3, meta1, meta2);
+      if (withActions) {
+        const actions = document.createElement("div"); actions.className = "no-print"; actions.style.marginTop = "10px";
+        const delBtn = document.createElement("button"); delBtn.className = "btn btn-secondary btn-sm"; delBtn.textContent = "إلغاء التذكرة";
+        delBtn.onclick = () => { saveRegistrations(getRegistrations().filter((t) => t.ticketId !== ticket.ticketId)); renderTickets(); };
+        actions.appendChild(delBtn); info.appendChild(actions);
+      }
+      const qrBox = document.createElement("div"); qrBox.className = "ticket-qr";
+      qrBox.innerHTML = `<svg width="70" height="70" viewBox="0 0 24 24" fill="#040d29" aria-hidden="true"><path d="M3 3h8v8H3V3zm2 2v4h4V5H5zm8-2h8v8h-8V3zm2 2v4h4V5h-4zM3 13h8v8H3v-8zm2 2v4h4v-4H5zm10 0h2v2h-2v-2zm4 0h2v2h-2v-2zm-4 4h2v2h-2v-2zm2-2h2v2h-2v-2zm2 2h2v2h-2v-2z"/></svg><span>${ticket.ticketId}</span>`;
+      card.append(info, qrBox);
+      return card;
+    }
+
+    function renderTickets() {
+      const container = document.getElementById("ticketsContainer");
+      const list = getRegistrations();
+      document.getElementById("ticketsBadge").textContent = `(${list.length})`;
+      container.innerHTML = "";
+      if (list.length === 0) {
+        const empty = document.createElement("div"); empty.className = "tickets-empty";
+        empty.textContent = "لا توجد تذاكر بعد. احجز برنامجاً أو أكد حضورك في المحاضرات التفاعلية لإصدار تذكرتك.";
+        container.appendChild(empty); return;
+      }
+      list.slice().reverse().forEach((t) => container.appendChild(buildTicketElement(t, true)));
+    }
+
+    function exportRegistrations() {
+      const data = getRegistrations();
+      if (data.length === 0) { alert("لا توجد حجوزات لتصديرها حالياً."); return; }
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a"); a.href = url; a.download = "tenxbooking-registrations.json"; a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function showModalError(msg) { const el = document.getElementById("modalError"); el.textContent = msg; el.style.display = msg ? "block" : "none"; }
+    function setModalStep(n) {
+      document.getElementById("step1Form").style.display = n === 1 ? "block" : "none";
+      document.getElementById("step2Box").style.display = n === 2 ? "block" : "none";
+      document.getElementById("step3Box").style.display = n === 3 ? "block" : "none";
+      [1, 2, 3].forEach((i) => document.getElementById("stepInd" + i).classList.toggle("active", i === n));
+    }
+
+    function openBookingModal(itemId) {
+      const item = catalog.find((x) => x.id === itemId); if (!item) return;
+      currentBookingItem = item;
+      document.getElementById("modalCategory").textContent = item.categoryLabel;
+      document.getElementById("modalTitle").textContent = item.title;
+      showModalError(""); setModalStep(1);
+      document.getElementById("bookingModal").classList.add("open");
+    }
+    function closeBookingModal() { document.getElementById("bookingModal").classList.remove("open"); }
+
+    function goToStep2(e) {
+      e.preventDefault(); showModalError("");
+      const name = cleanText(document.getElementById("regName").value);
+      const email = cleanText(document.getElementById("regEmail").value);
+      const phone = cleanText(document.getElementById("regPhone").value);
+      if (name.length < 3 || !email.includes("@") || phone.length < 8) {
+        showModalError("برجاء التأكد من إدخال الاسم والبريد الإلكتروني ورقم الهاتف بشكل صحيح."); return false;
+      }
+      const promo = cleanText(document.getElementById("regPromo").value).toUpperCase();
+      let price = currentBookingItem.price;
+      if (promo === "TENX20" && price > 0) price = Math.round(price * 0.8);
+      computedFinalPrice = price;
+      document.getElementById("finalPriceLabel").textContent = price === 0 ? "مجاني (0 ج.م)" : `${price} ج.م`;
+      setModalStep(2); return false;
+    }
+
+    function backToStep1() { showModalError(""); setModalStep(1); }
+    function selectPayMethod(method, el) {
+      selectedPayMethod = method;
+      document.querySelectorAll(".pay-option").forEach((o) => o.classList.remove("selected"));
+      el.classList.add("selected");
+      document.getElementById("cardFields").style.display = method === "card" ? "block" : "none";
+      document.getElementById("walletFields").style.display = method === "wallet" ? "block" : "none";
+      document.getElementById("cashFields").style.display = method === "cash" ? "block" : "none";
+    }
+
+    function completeSimulation() {
+      showModalError("");
+      if (computedFinalPrice > 0) {
+        if (selectedPayMethod === "card" && document.getElementById("cardNumber").value.replace(/\s+/g, "").length < 12) {
+          showModalError("برجاء إدخال رقم بطاقة تجريبي صحيح."); return;
+        }
+        if (selectedPayMethod === "wallet" && cleanText(document.getElementById("walletInput").value).length < 6) {
+          showModalError("برجاء إدخال رقم المحفظة أو عنوان InstaPay."); return;
+        }
+      }
+      const methodLabels = { card: "بطاقة بنكية (محاكاة)", wallet: "محفظة / InstaPay (محاكاة)", cash: "حجز مبدئي بالمقر" };
+      const newTicket = {
+        ticketId: `TENXB-${Math.floor(100000 + Math.random() * 900000)}`, itemId: currentBookingItem.id, itemTitle: currentBookingItem.title,
+        date: currentBookingItem.date, name: cleanText(document.getElementById("regName").value),
+        email: cleanText(document.getElementById("regEmail").value), phone: cleanText(document.getElementById("regPhone").value),
+        level: cleanText(document.getElementById("regLevel").value), org: cleanText(document.getElementById("regOrg").value),
+        paidAmount: computedFinalPrice, payMethodLabel: computedFinalPrice === 0 ? "تسجيل مجاني" : methodLabels[selectedPayMethod],
+        createdAt: new Date().toISOString()
+      };
+      const list = getRegistrations(); list.push(newTicket); saveRegistrations(list); renderTickets();
+      const preview = document.getElementById("modalTicketPreview");
+      preview.innerHTML = ""; preview.appendChild(buildTicketElement(newTicket, false));
+      document.getElementById("step1Form").reset(); setModalStep(3);
+    }
+
+    initPoster();
+    renderInstructors();
+    renderCatalog("all");
+    renderTickets();
+  </script>
+</body>
+</html>
